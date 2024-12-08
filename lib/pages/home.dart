@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/services/data.dart';
 import 'package:newsapp/services/slider_data.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -34,39 +35,167 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 10.0),
-              height: 70,
-              child: Expanded (
-             child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: categories.length,itemBuilder: (context,index){
-                return CategoryTile(image: categories[index].image,categoryName: categories[index].categoryName);
-              }),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 10.0),
+                height: 70,
+                child: Expanded (
+               child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: categories.length,itemBuilder: (context,index){
+                  return CategoryTile(image: categories[index].image,categoryName: categories[index].categoryName);
+                }),
+                ),
               ),
-            ),
-            CarouselSlider.builder(itemCount:slider.length , itemBuilder: (context,index,RealIndex){
-              String? res =slider[index].image;
-              String res1=slider[index].name;
-              return buildimage(res!, index, res1!);
-            }, options: CarouselOptions(
-              height: 200,
-              enlargeStrategy: CenterPageEnlargeStrategy.height,
-              autoPlay: true,
-              enlargeCenterPage: true,
-              onPageChanged: (index,reason){
-                setState(() {
-                  activeIndex=index;
-                });
-              }
-            )),
-            SizedBox(height: 30.0,),
-           // buildIndicator()
-            
-
-            
-          ],
+              SizedBox(
+                height: 30.0,
+              ),
+              Padding(
+              padding: const EdgeInsets.only(left: 10.0,right: 10.0),
+              child :Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Breaking News!",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 18.0),),
+              Text("View All",style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500,fontSize: 16.0),),
+                ],
+              ),
+              ),
+        
+              SizedBox(
+                height: 10.0,
+              ),
+              
+              CarouselSlider.builder(itemCount:slider.length , itemBuilder: (context,index,RealIndex){
+                String? res =slider[index].image;
+                String res1=slider[index].name;
+                return buildimage(res!, index, res1!);
+              }, options: CarouselOptions(
+                height: 200,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                onPageChanged: (index,reason){
+                  setState(() {
+                    activeIndex=index;
+                  });
+                }
+              )),
+              SizedBox(height: 30.0,),
+             Center(child:buildIndicator(), ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Trending News!",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 18.0),),
+              Text("View All",style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500,fontSize: 16.0),),
+                ],
+              ),
+              Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child:Material(
+                elevation: 3.0,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 5.0),
+                  child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: ClipRRect(borderRadius: BorderRadius.circular(10),
+                      child: Image.asset("images/sport.jpg",height: 120,width: 120,fit: BoxFit.cover,),
+                      ),
+                    
+                    ),
+                    SizedBox(width: 5.0,),
+                    Column(
+                      children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.8,
+                      child: Text(
+                        "Rui Costa outsprints breakway to win stage 15",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17.0
+                        ),
+                      ),
+                    ),
+                    SizedBox(height:8.0 ,),
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.8,
+                      child: Text(
+                        "Then a final kick to beat lennard kanna",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0
+                        ),
+                      ),
+                    )
+                      ],
+                    ),
+                    
+                  ],
+                              ),
+                ),
+              ),
+        
+              ),
+              SizedBox(height: 20.0),
+              Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child:Material(
+                elevation: 3.0,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 5.0),
+                  child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: ClipRRect(borderRadius: BorderRadius.circular(10),
+                      child: Image.asset("images/sport.jpg",height: 120,width: 120,fit: BoxFit.cover,),
+                      ),
+                    
+                    ),
+                    SizedBox(width: 5.0,),
+                    Column(
+                      children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.8,
+                      child: Text(
+                        "Rui Costa outsprints breakway to win stage 15",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17.0
+                        ),
+                      ),
+                    ),
+                    SizedBox(height:8.0 ,),
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.8,
+                      child: Text(
+                        "Then a final kick to beat lennard kanna",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15.0
+                        ),
+                      ),
+                    )
+                      ],
+                    ),
+                    
+                  ],
+                              ),
+                ),
+              ),
+        
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -101,6 +230,7 @@ class _HomeState extends State<Home> {
     ),
      ],)
   );
+   Widget buildIndicator()=>AnimatedSmoothIndicator(activeIndex: activeIndex, count: slider.length,effect:JumpingDotEffect(), );
 }
 class CategoryTile extends StatelessWidget {
   final image,categoryName;
@@ -144,6 +274,5 @@ class CategoryTile extends StatelessWidget {
     );
     
   }
-  //Widget buildIndicator()=>AnimatedSmoothIndicator();
 
 }

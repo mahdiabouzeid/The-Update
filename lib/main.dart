@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/pages/home.dart';
+import 'package:newsapp/pages/landing_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: LandingPage()
     );
   }
 }
